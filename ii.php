@@ -25,6 +25,9 @@
             <a id="create-login" href="create.html">Créer un compte</a>
             </div>
         </div>
+        <?php
+        echo "gdfgfdg";
+        ?>
         <script>
             document.getElementById('connexion').addEventListener("click", function() {
                 document.getElementsByClassName('popup')[0].style.display = 'flex';
