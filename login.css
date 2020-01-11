@@ -107,13 +107,19 @@ section {
 .description {
     display: flex;
     flex-direction: column;
-  overflow: hidden;
-  text-overflow: ellipsis;
+}
+.description h1 {
+    margin-top: 20px;
 }
 .description div {
-    height:200px;width:100%;font:16px/26px Georgia, Garamond, Serif;overflow:auto;
+    height:200px;
+    width:100%;
+    font:16px/26px Georgia, Garamond, Serif;
+    overflow:auto;
 }
 section img {
+    margin-top: 20px;
+    margin-right: 20px;
     width: 500px;
 }
 
