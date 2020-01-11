@@ -20,13 +20,32 @@
         </header>
         <main>
             <?php
-                for ($i = 1; $i <= 3; $i++) {
-                    $description = file_get_contents("event_data/event".$i.".txt");
+            include 'db_connect.php';
+            $conn = OpenCon();
+            if ($conn->connect_error) {
+                ?><script>alert('can\'t connect to database: <?= $conn->connect_error ?>')</script><?php
+            }
+            $query = "select * from evenement";
+            $result = mysqli_query($conn, $query);
+            if(!$result)
+                echo "riens";
+                $i = 1;
+            while($row = mysqli_fetch_assoc($result))
+            {
+                    $description = $row["details"];
                     $d_first = substr($description, 0, 50);
                     $d_second = substr($description, 50, strlen($description));
-                    echo '<section><div><img src="event_data/event'.$i.'.jpg"></div><div class="description"><h1>Event'.$i.'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
+                    echo '<section><div><img src='.$row["imgPath"].'></div><div class="description"><h1>'.$row["titre"].'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
                     <button onclick="hide_text('.$i.')" id="btn'.$i.'">Lire la suite</button></div></section>';
-                }
+                    $i++;
+             }
+                // for ($i = 1; $i <= 3; $i++) {
+                //     $description = file_get_contents("event_data/event".$i.".txt");
+                //     $d_first = substr($description, 0, 50);
+                //     $d_second = substr($description, 50, strlen($description));
+                //     echo '<section><div><img src="event_data/event'.$i.'.jpg"></div><div class="description"><h1>Event'.$i.'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
+                //     <button onclick="hide_text('.$i.')" id="btn'.$i.'">Lire la suite</button></div></section>';
+                // }
             ?>
         </main>
         <div class="popup" style="display: none">

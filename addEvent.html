@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link rel="stylesheet" type="text/css" href="addEvent.css">
+  <meta charset="UTF-8">
+  <title>ajouter evenement</title>
+</head>
+<body>
+    <header id="home">
+        <nav>
+            <h1>Événements de l’ENSAK</h1>
+            <ul class="header-list-2">
+                <li><a href="logout.php" id="deconnexion">DÉCONNEXION</a></li>
+            </ul>
+        </nav>
+    </header>
+<form id ="form-container" class="event" method="post" action="addEvent.php" enctype="multipart/form-data">
+  <input class="titre" type="text" class="reg-input" name="titre" placeholder="titre">
+  <label>L'affiche de l'événement<input class="load-image" type="file" name="image" accept=".jpg, .jpeg, .png"></label>
+  <label class="date">La date de début <input type="date" name="dateDebut"></label>
+  <label class="date">La date de fin <input type="date" name="dateFin"></label>
+  <TEXTAREA class="details" name="details" rows=4 cols=40 placeholder="Description de l'événement"></TEXTAREA>
+  <button type="submit" name="submit" value="OK" title="submit" class="icon-arrow-right"><span>Ajouter un événement</span></button>
+</form>
+<body>
+</body>
+</body>
+</html>

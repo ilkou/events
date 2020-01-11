@@ -1,0 +1,127 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.event{
+	 position: absolute;
+   top: 10%;
+   left: 50%;
+   transform: translate(-50%,0%);
+}
+
+.titre{
+    color : #cc6633;
+    font : 150% georgia, palatino, serif;
+    font-style : italic;
+}
+.details{
+    height: 20vh;
+    width: 60vw;
+    display: flex;
+    flex-direction: column;
+}
+.submit{
+    display: flex;
+    flex-direction: column;
+}
+
+header {
+    box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.3);
+    position: sticky;
+    top: 0px;
+    background: white;
+}
+
+nav {
+    min-height: 6vh;
+    margin: auto;
+    width: 90%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+nav h1,
+nav ul {
+    font-size: 0.9rem;
+    flex: 1;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: space-evenly;
+    float: right;
+}
+nav a {
+    color: black;
+    text-decoration: none;
+}
+nav ul a {
+    display: flex;
+    flex-direction: row;
+}
+#form-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#form-container .reg-input {
+    color: #444;
+  font-size: 1.5em;
+  outline: none; 
+  box-shadow: none; 
+  -webkit-appearance: none; 
+  border-radius: 0; 
+  border-top: none;
+  border-left: solid 1px;
+  border-right: none;
+  border-bottom: solid 1px;
+  border-color: #bbb;
+  background: transparent;
+  height: 2em;
+  width: 17em;
+  margin-bottom: 5%;
+  padding: 0 3%;
+    display: flex;
+    flex-direction: column;
+}
+#form-container h1 {
+    color: rgb(0, 39, 73);
+    text-align: center;
+}
+#form-container button {
+    font-size: 1.5em;
+    background: rgb(58, 100, 134);
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    float: right;
+}
+    
+#form-container button:hover {
+    background: rgb(11, 59, 95);
+    color: #fff;
+    border: 1px solid #eee;
+    border-radius: 20px;
+    box-shadow: 5px 5px 5px #eee;
+    text-shadow:none;
+    outline-style: none;
+}
+#form-container label {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 2vw;
+}
+#deconnexion:hover{
+    background-color: #34495e;
+    color: #fff;
+    padding: 10px;
+}
+.date {
+    width: 20vw;
+}
