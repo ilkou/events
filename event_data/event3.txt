@@ -1,0 +1,1 @@
+Si start est positif, la chaîne retournée commencera au caractère numéro start, dans la chaîne string. Le premier caractère est numéroté zéro. En effet, dans la chaîne 'abcdef', le caractère à la position 0 est 'a', le caractère à la position 2 est 'c', et ainsi de suite.
