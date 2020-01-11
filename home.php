@@ -13,8 +13,8 @@
         <header id="home">
             <nav>
                 <h1>Événements de l’ENSAK</h1>
-                <ul class="header-list">
-                    <li><div href="#"><?= $_SESSION['loggued_on_user']?></div></li>
+                <ul class="header-list-2"><?= $_SESSION['loggued_on_user']?>
+                    <li><a href="addEvent.php" id="add-event">AJOUTER ÉVÉNEMENT</a></li>
                     <li><a href="logout.php" id="deconnexion">DÉCONNEXION</a></li>
                 </ul>
             </nav>
