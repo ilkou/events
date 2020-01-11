@@ -94,14 +94,30 @@ nav a {
     position: relative;
     left: 25%;
 }
+main {
+    
+}
 section {
-    min-height: 100vh;
     display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: -2;
+    flex-direction: line;
+    padding-left: 50px;
+    padding-right: 50px;
+    max-width: 100%;
+}
+.description {
+    display: flex;
+    flex-direction: column;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.description div {
+    height:200px;width:100%;font:16px/26px Georgia, Garamond, Serif;overflow:auto;
 }
 section img {
-    width: 80%;
-    height: auto;
+    width: 500px;
+}
+
+button {
+    width: 100px;
+    height: 50px;
 }
