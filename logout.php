@@ -1,4 +1,5 @@
 <?php
+unset($_SESSION['loggued_on_user']);
 session_destroy();
-$_SESSION['loggued_on_user'] = "";
+header("Location: index.php");
 ?>
