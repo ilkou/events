@@ -8,6 +8,7 @@
     <head>
         <title>events</title>
         <link rel="stylesheet" type="text/css" href="login.css">
+        <script type="text/javascript" src="node_modules/jquery-3.4.1.min.js"></script>
     </head>
     <body>
         <header id="home">
@@ -25,6 +26,7 @@
                 $conn = OpenCon();
                 if ($conn->connect_error) {
                     ?><script>alert('can\'t connect to database: <?= $conn->connect_error ?>')</script><?php
+                    exit();
                 }
                 $query = "select * from evenement";
                 $result = mysqli_query($conn, $query);
@@ -37,7 +39,7 @@
                         $description = nl2br($description);
                         $d_first = substr($description, 0, 150);
                         $d_second = substr($description, 150, strlen($description));
-                        echo '<section><div><img src='.$row["imgPath"].'></div><div class="description"><h1>'.$row["titre"].'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
+                        echo '<section><div id="ins-cont'.$i.'"><img id="ins-img'.$i.'" src='.$row["imgPath"].'><form action="SaveEvent.php" method="GET"><input type="hidden" name="event" value="'.$i.'" readonly><input id="ins-btn'.$i.'" type="submit" name="submit" value="INSCRIRE"></form></div><div class="description"><h1>'.$row["titre"].'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
                         <button onclick="hide_text('.$i.')" id="btn'.$i.'">Lire la suite</button></div></section>';
                         $i++;
                  }
@@ -46,10 +48,24 @@
         </main>
         <script>
             let i = 1;
-            let el;
+            let el, ins_btn;
             while ((el = document.getElementById('more'+i.toString())) != null) {
                 el.style.display = 'none';
+                ins_btn = document.getElementById('ins-btn'+i.toString());
+                ins_btn.style = 'opacity: 0;transition: opacity 0.5s ease;position: relative; border: none; padding: 4px; height: 30px;cursor: pointer;background-color: rgb(0,250,0);font-weight: bold;color:#fff;';
                 document.getElementById('btn'+i.toString()).style = 'border: none; outline:0; color: blue';
+                let ins_cont_id = "#ins-cont" + i.toString();
+                let ins_btn_id = "#ins-btn" + i.toString();
+                let inside = ins_cont_id + ' ' + ins_btn_id;
+                $(ins_cont_id).css({"position": "relative"});
+                $(inside).css({"position": "absolute", "top": "60%", "left": "50%", "transform": "translate(-50%, -50%)", "-ms-transform": "translate(-50%, -50%)", "opacity":"0"});
+                $(ins_cont_id).hover(function(){
+                        $(this).css({"opacity": "0.7","transition":"opacity 0.5s ease;"});
+                        $(ins_btn_id).css("opacity", 1);
+                    }, function(){
+                        $(this).css("opacity", 1);
+                        $(ins_btn_id).css({"opacity": "0","transition":"opacity 0.5s ease;"});
+                    });
                 i++;
             }
             function hide_text(i) {
@@ -66,6 +82,7 @@
                     moreText.style.display = "inline";
                 }
             }
+            let msg = "<?php print($_SESSION['is_admin']); ?>"; console.log('admin: ' + msg);
         </script>
     </body>
 </html>

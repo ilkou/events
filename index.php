@@ -37,13 +37,6 @@
                     $d_second = substr($description, 150, strlen($description));
                     echo '<section><div><img src='.$row["imgPath"].'></div><div class="description"><h1>'.$row["titre"].'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
                     <button onclick="hide_text('.$i.')" id="btn'.$i.'">Lire la suite</button></div></section>';
-                    ?>
-                        <script>
-                            let i = "<?php print($i); ?>";
-                            document.getElementById('more'+i.toString()).style.display = 'none';
-                            document.getElementById('btn'+i.toString()).style = 'border: none; outline:0; color: blue';
-                        </script>
-                    <?php
                     $i++;
              }
              CloseCon($conn);
@@ -69,6 +62,13 @@
             </div>
         </div>
         <script>
+            let i = 1;
+            let el;
+            while ((el = document.getElementById('more'+i.toString())) != null) {
+                el.style.display = 'none';
+                document.getElementById('btn'+i.toString()).style = 'border: none; outline:0; color: blue';
+                i++;
+            }
             function reloadScrollBars() {
                 document.documentElement.style.overflow = 'auto';  // firefox, chrome
                 //document.body.scroll = "yes"; // ie only

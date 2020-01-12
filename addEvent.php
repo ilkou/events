@@ -9,7 +9,7 @@ $conn = OpenCon();
 
 if ($conn->connect_error) {
     ?><script>alert('can\'t connect to database: <?= $conn->connect_error ?>')</script><?php
-    header( "refresh:3; url=index.php" );
+    header( "refresh:0; url=index.php" );
     exit();
 }
 $msg = "";
@@ -34,12 +34,12 @@ if ($_POST["submit"] == "OK") {
     if ($conn->query($sql) === TRUE) {
         ?><script>alert('Félicitations ! Votre nouveau compte a été créé avec succès !'); </script><?PHP
         CloseCon($conn);
-        header( "refresh:3; url=index.php" );
+        header( "refresh:0; url=index.php" );
     }
     else {
         echo "$conn->error";
         CloseCon($conn);
-        header( "refresh:3; url=addEvent.html" );
+        header( "refresh:0; url=addEvent.html" );
         exit();
     }
     CloseCon($conn);

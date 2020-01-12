@@ -12,6 +12,6 @@ if ($error == false) {
 }
 else {
     ?><script>alert('les coordonnées n’est associé à aucun compte'); </script><?PHP
-        header( "refresh:3; url=index.php" );
+        header( "refresh:0; url=index.php" );
 }
 ?>
