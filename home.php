@@ -34,8 +34,8 @@
                 while($row = mysqli_fetch_assoc($result))
                 {
                         $description = $row["details"];
-                        $d_first = substr($description, 0, 50);
-                        $d_second = substr($description, 50, strlen($description));
+                        $d_first = substr($description, 0, 150);
+                        $d_second = substr($description, 150, strlen($description));
                         echo '<section><div><img src='.$row["imgPath"].'></div><div class="description"><h1>'.$row["titre"].'</h1><div>'.$d_first.'<span id="dots'.$i.'">...</span><span id="more'.$i.'">'.$d_second.'</span></div>
                         <button onclick="hide_text('.$i.')" id="btn'.$i.'">Lire la suite</button></div></section>';
                         $i++;
