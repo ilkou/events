@@ -25,12 +25,13 @@ if ($_POST['submit'] === "OK") {
     $sql = "INSERT INTO user(pseudo, psswd, phone, mail, isAdmin, isOrgan) VALUES ('$login', '$passwd', '$phone','$mail', '$isAdmin', '$isOrgan')";
     if ($conn->query($sql) === TRUE) {
         ?><script>alert('Félicitations ! Votre nouveau compte a été créé avec succès !'); </script><?PHP
+        CloseCon($conn);
         header( "refresh:3; url=index.php" );
     } else {
         ?><script>let msg = "<?php print($conn->error); ?>"; alert('Error: ' + msg); </script><?PHP
+        CloseCon($conn);
         header( "refresh:3; url=create.html" );
     }
-    
     CloseCon($conn);
 }
 else {

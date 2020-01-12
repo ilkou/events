@@ -10,8 +10,11 @@ function auth($login, $passwd) {
     $passwd = hash('whirlpool', $passwd);
     $checkUserQuery = "SELECT * FROM user WHERE pseudo='$login' AND psswd='$passwd'";
     $checkUserResult = mysqli_query($conn, $checkUserQuery);
-    if (mysqli_num_rows($checkUserResult) == 1)
+    if (mysqli_num_rows($checkUserResult) == 1) {
+        CloseCon($conn);
         return true;
+    }
+    CloseCon($conn);
     return (false);
 }
 ?>

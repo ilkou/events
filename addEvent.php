@@ -2,12 +2,11 @@
     session_start();
     if (!$_SESSION['loggued_on_user'])
         header("Location: index.php");
-?>
-<?php
+
 include 'db_connect.php';
+
 $conn = OpenCon();
 
-// Check connection
 if ($conn->connect_error) {
     ?><script>alert('can\'t connect to database: <?= $conn->connect_error ?>')</script><?php
     header( "refresh:3; url=index.php" );
@@ -15,31 +14,35 @@ if ($conn->connect_error) {
 }
 $msg = "";
 $target_dir = "img/";
-if($_POST["submit"] == "OK") {
+if ($_POST["submit"] == "OK") {
     // Get image name
     $image = $_FILES['image']['name'];
     // image file directory
     $target = "img/".basename($image);
-    $titre = $_POST["titre"];
-    $dataDebut = $_POST["dateDebut"];
-    $dataFin = $_POST["dateFin"];
+    $titre = mysqli_real_escape_string($conn, $_POST["titre"]);
+    $dataDebut = mysqli_real_escape_string($conn, $_POST["dateDebut"]);
+    $dataFin = mysqli_real_escape_string($conn, $_POST["dateFin"]);
     $users = 0;
-    $details = $_POST["details"];
+    $details = mysqli_real_escape_string($conn, $_POST["details"]);
     if (move_uploaded_file($_FILES['image']['tmp_name'], $target)) {
-        $msg = "Image uploaded successfully";
+        ?><script>console.log("Image uploaded successfully");</script><?PHP
     }else{
-        $msg = "Failed to upload image";
+        ?><script>console.log("Failed to upload image");</script><?PHP
     }
-     
-    $query = "INSERT INTO evenement (titre, dateDebut, dateFin, nbrUser, details, img, imgPath) 
+    $sql = "INSERT INTO evenement (titre, dateDebut, dateFin, nbrUser, details, img, imgPath) 
             VALUES ('$titre','$dataDebut','$dataFin','$users','$details','$image','$target')";
-    $result = mysqli_query($conn, $query);
-       
-        if(!$result){
-            ?><script>alert('Error: ')</script><?php
-            header( "refresh:3; url=index.php" );
-            exit();
-        }
+    if ($conn->query($sql) === TRUE) {
+        ?><script>alert('Félicitations ! Votre nouveau compte a été créé avec succès !'); </script><?PHP
+        CloseCon($conn);
+        header( "refresh:3; url=index.php" );
     }
-    header('Location: index.php');
+    else {
+        echo "$conn->error";
+        CloseCon($conn);
+        header( "refresh:3; url=addEvent.html" );
+        exit();
+    }
+    CloseCon($conn);
+    header('Location: home.php');
+}
 ?>
